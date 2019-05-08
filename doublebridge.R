@@ -1,8 +1,8 @@
 library(tidyverse)
 library(readxl)
 
-sawana<-read_excel("C:/Users/liuha/Desktop/SAW Study Level QC Report Feb 2019.xlsx", sheet = "Analyze Report")
-sawodw<-read_excel("C:/Users/liuha/Desktop/SAW Study Level QC Report Feb 2019.xlsx", sheet= "ODW Report")
+sawana<-read_excel("C:/Users/liuha/Documents/Double bridge.INC/SAW Study Level QC Report Feb 2019.xlsx", sheet = "Analyze Report")
+sawodw<-read_excel("C:/Users/liuha/Documents/Double bridge.INC/SAW Study Level QC Report Feb 2019.xlsx", sheet= "ODW Report")
 
 ##Merge same display name row
 new<-merge(sawodw, sawana, by="Display Name")%>%
@@ -50,12 +50,14 @@ sawreco<-data.frame(
 
 
 for (i in 1:ncol(sawreco)) {
+  
   if(class(sawreco[,i])=="logical"){
     sawreco[,i]<-as.factor(sawreco[,i])
     sawreco[,i]<-factor(sawreco[,i], levels =  c("TRUE","FALSE"), labels=c("YES", "NO"))
   }
   else
     sawreco[,i]<-sawreco[,i]
+  
 }
 
 
